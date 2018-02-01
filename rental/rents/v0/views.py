@@ -17,7 +17,7 @@ class RentViewSets(viewsets.ViewSet):
     """
     def create(self, request, *args, **kwargs):
         serializer = Controller(request)
-        serializer.create()
+        serializer.create_rent()
 
         if serializer.error:
             return default_responses(404, serializer.error)
@@ -26,7 +26,7 @@ class RentViewSets(viewsets.ViewSet):
 
     def list(self, request, *args, **kwargs):
         serializer = Controller(request)
-        serializer.get_rent()
+        serializer.list_rent()
         if serializer.error:
             print(serializer.error)
             return default_responses(400, serializer.error)
@@ -35,7 +35,7 @@ class RentViewSets(viewsets.ViewSet):
 
     def retrieve(self, request, pk, *args, **kwargs):
         serializer = Controller(request)
-        serializer.get_rent(pk)
+        serializer.list_rent(pk)
         if serializer.error:
             print(serializer.error)
             return default_responses(400, serializer.error)

@@ -25,8 +25,8 @@ class Rentals(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name='rent_user', null=True)
-    neto_price = models.IntegerField()
-    total_price = models.IntegerField()
+    neto_price = models.IntegerField(null=True)
+    total_price = models.IntegerField(null=True)
     familiar_rental_promotion = models.BooleanField(default=False)
     status = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)

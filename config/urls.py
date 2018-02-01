@@ -11,6 +11,7 @@ router = DefaultRouter()
 router.extend(rent)
 
 urlpatterns = [
+    url(r'^api/v0/', include(router.urls, namespace='api')),
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
@@ -24,7 +25,6 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
 
 
-    url(r'^api/v0/', include(router.urls, namespace='api')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

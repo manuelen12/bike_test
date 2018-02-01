@@ -13,4 +13,4 @@ class RentSerializer(serializers.Serializer):
     user_id = serializers.SlugRelatedField(
                 queryset=User.objects.all(), slug_field='id')
     bike = serializers.CharField(
-        help_text='[{"price_by_frecuency": 1, "quantity": 1}]')
+        help_text='[{"price_by_frecuency_id": 1, "quantity": 1}]')
