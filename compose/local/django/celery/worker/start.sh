@@ -6,4 +6,4 @@ set -o nounset
 set -o xtrace
 
 
-celery -A test.taskapp worker -l INFO
+celery -A rental.taskapp worker -l INFO

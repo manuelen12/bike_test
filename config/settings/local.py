@@ -1,5 +1,5 @@
 """
-Local settings for Test project.
+Local settings for Project Name project.
 
 - Run in Debug mode
 
@@ -20,7 +20,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key only used for development and testing.
-SECRET_KEY = env('DJANGO_SECRET_KEY', default='J5g=guwPWbq$mp9@_$Qq?*T%?CzLg_$05T!C*&pE,x(eX4O9BU')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='DN{+,F;{fy*6S+K(>7&pbCoK@sM2|DZ/Tn~|t]F#fHvdqbMJsm')
 
 # Mail settings
 # ------------------------------------------------------------------------------

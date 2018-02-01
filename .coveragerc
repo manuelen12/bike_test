@@ -1,5 +1,5 @@
 [run]
-include = test/*
+include = rental/*
 omit = *migrations*, *tests*
 plugins =
     django_coverage_plugin

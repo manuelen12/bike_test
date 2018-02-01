@@ -303,7 +303,7 @@ pip-selfcheck.json
 
 
 
-test/media/
+rental/media/
 
 # Added to maintain local compose files which are ignored by something above.
 # See issue https://github.com/pydanny/cookiecutter-django/issues/1321

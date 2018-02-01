@@ -1,5 +1,5 @@
 www.{$DOMAIN_NAME} {
-    redir https://bike.cloudemotionteam.com
+    redir https://rent.cloudemotionteam.com
 }
 
 {$DOMAIN_NAME} {

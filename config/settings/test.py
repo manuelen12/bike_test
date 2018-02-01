@@ -1,5 +1,5 @@
 """
-Test settings for Test project.
+Test settings for Project Name project.
 
 - Used to run tests fast on the continuous integration server and locally
 """

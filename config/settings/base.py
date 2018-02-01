@@ -1,5 +1,5 @@
 """
-Base settings for Test project.
+Base settings for Project Name project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (test/config/settings/base.py - 3 = test/)
-APPS_DIR = ROOT_DIR.path('test')
+ROOT_DIR = environ.Path(__file__) - 3  # (rental/config/settings/base.py - 3 = rental/)
+APPS_DIR = ROOT_DIR.path('rental')
 
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
@@ -54,7 +54,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # custom users app
-    'test.users.apps.UsersConfig',
+    'rental.users.apps.UsersConfig',
     # Your stuff: custom apps go here
 ]
 
@@ -76,7 +76,7 @@ MIDDLEWARE = [
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
 MIGRATION_MODULES = {
-    'sites': 'test.contrib.sites.migrations'
+    'sites': 'rental.contrib.sites.migrations'
 }
 
 # DEBUG
@@ -111,7 +111,7 @@ MANAGERS = ADMINS
 # Uses django-environ to accept uri format
 # See: https://django-environ.readthedocs.io/en/latest/#supported-types
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///test'),
+    'default': env.db('DATABASE_URL', default='postgres:///rental'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -255,8 +255,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
-ACCOUNT_ADAPTER = 'test.users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = 'test.users.adapters.SocialAccountAdapter'
+ACCOUNT_ADAPTER = 'rental.users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'rental.users.adapters.SocialAccountAdapter'
 
 # Custom user app defaults
 # Select the correct user model

@@ -5,4 +5,4 @@ set -o pipefail
 set -o nounset
 
 
-celery -A test.taskapp worker -l INFO
+celery -A rental.taskapp worker -l INFO
