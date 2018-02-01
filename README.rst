@@ -9,6 +9,24 @@ project to rent cars
 
 
 :License: MIT
+Requirement
+--------
+	- postgresql
+
+How to Install
+--------
+	if you want to use the local enviroment use:
+		pip install -r requirements/local.txt
+	to make unitary test use 
+		pip install -r requirements/test.txt
+
+How to Use
+--------
+	to run the project use:
+		./manage.py runserver
+	and go to the site and conect to localhost
+	to run the unitary test use:
+		./manage.py pytest
 
 
 Settings
