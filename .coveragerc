@@ -1,5 +1,11 @@
 [run]
 include = rental/*
-omit = *migrations*, *tests*
+omit = *migrations*,
+       *tests*,
+       *app.py,
+       *settings*,
+       *urls.py*,
+       *wsgi.py*,
+       manage.py
 plugins =
     django_coverage_plugin

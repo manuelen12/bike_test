@@ -55,6 +55,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # custom users app
     'rental.users.apps.UsersConfig',
+    'rental.rents.apps.RentsConfig',
     # Your stuff: custom apps go here
 ]
 
