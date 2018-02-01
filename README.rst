@@ -21,6 +21,10 @@ How to Install
 		pip install -r requirements/local.txt
 	to make unitary test use 
 		pip install -r requirements/test.txt
+	the next step is run the migration
+		./manage.py migration
+	to finih load the fixture
+		./manage.py loaddata rental/rents/fixture/price_by_frecuency.json
 
 How to Use
 --------
