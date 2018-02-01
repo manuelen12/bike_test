@@ -43,6 +43,8 @@ DJANGO_APPS = [
 
     # Admin
     'django.contrib.admin',
+    'rest_framework',
+    'rest_framework_swagger',
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
@@ -56,6 +58,7 @@ LOCAL_APPS = [
     # custom users app
     'rental.users.apps.UsersConfig',
     'rental.rents.apps.RentsConfig',
+    'rental.common.apps.CommonConfig',
     # Your stuff: custom apps go here
 ]
 
@@ -274,3 +277,5 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+
+HTTP = "http://"

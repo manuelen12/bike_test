@@ -1,0 +1,1 @@
+[{"model": "rents.pricebyfrecuency", "pk": 1, "fields": {"frequently": 2, "price": 20}}, {"model": "rents.pricebyfrecuency", "pk": 2, "fields": {"frequently": 3, "price": 60}}, {"model": "rents.pricebyfrecuency", "pk": 3, "fields": {"frequently": 1, "price": 5}}]

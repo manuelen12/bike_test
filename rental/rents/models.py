@@ -21,20 +21,19 @@ class PriceByFrecuency(models.Model):
 
 
 # Create your models here.
-class Rent(models.Model):
+class Rentals(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name='rent_user', null=True)
     neto_price = models.IntegerField()
     total_price = models.IntegerField()
     familiar_rental_promotion = models.BooleanField(default=False)
-    # price_by_frecuency = models.ManyToManyField(PriceByFrecuency)
     status = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         app_label = 'rents'
-        db_table = 'rent'
+        db_table = 'rentals'
 
     def __str__(self):
         return self.user.username
@@ -42,8 +41,9 @@ class Rent(models.Model):
 
 class Bike(models.Model):
 
-    rent = models.ForeignKey(Rent)
-    price_by_frecuency = models.ForeignKey(PriceByFrecuency)
+    rentals = models.ForeignKey(Rentals, related_name="rentals_bike")
+    price_by_frecuency = models.ForeignKey(
+        PriceByFrecuency, related_name="price_bike")
     quantity = models.IntegerField()
     create_at = models.DateTimeField(auto_now_add=True)
 

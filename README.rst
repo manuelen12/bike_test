@@ -12,6 +12,8 @@ project to rent cars
 Requirement
 --------
 	- postgresql
+	- Python3.6
+	- Django 1.11
 
 How to Install
 --------

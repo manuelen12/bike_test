@@ -1,10 +1,10 @@
 import pytest
 from mixer.backend.django import mixer
-from rental.rents.models import Bike, PriceByFrecuency, Rent
+from rental.rents.models import Bike, PriceByFrecuency, Rentals
 pytestmask = pytest.mark.django_db
 
 @pytest.mark.django_db
-class TestRent:
+class TestRentals:
     def test_bike_model(self):
         bike = mixer.blend(Bike)
         assert bike.pk == 1, 'should create a Bike instance'
@@ -12,7 +12,7 @@ class TestRent:
         assert str(bike)
 
     def test_rent_model(self):
-        rent = mixer.blend(Rent)
+        rent = mixer.blend(Rentals)
         assert rent.pk == 1, 'should create a Rents instance'
 
         assert str(rent) == rent.user.username

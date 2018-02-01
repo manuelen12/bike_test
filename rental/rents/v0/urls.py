@@ -1,18 +1,14 @@
-
+# Stdlib imports
+# Core Django imports
 from django.conf.urls import url, include
+# Third-party app imports
 from rest_framework import routers
-from plans.v0.views import (ControlPlan, ControlPlansUser, StatusPlansUser, UserStadistics, PaymentsStadistics)
-from plans.views import (StatusPay)
+# Imports from your apps
+from rents.v0.views import (RentViewSets)
 
 router = routers.DefaultRouter()
 
-router.register(r'plans', ControlPlan, base_name='plans')
-router.register(r'plans_user', ControlPlansUser, base_name='plans_user')
-router.register(r'payment_plans', StatusPlansUser, base_name='payment_plans')
-router.register(r'user_stadistics', UserStadistics , base_name='user_stadistics')
-router.register(r'payments_stadistics', PaymentsStadistics, base_name='payments_stadistics')
-router.register(r'validate', StatusPay, base_name='validate')
+router.register(r'rents', RentViewSets, base_name='rents')
 urlpatterns = [
     url(r'^', include(router.urls)),
-    # url(r'^validate/', include('')),
 ]
