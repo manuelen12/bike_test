@@ -4,7 +4,7 @@
 
 from rest_framework import viewsets
 # Imports from your apps
-from common.utils import default_responses
+from rental.common.utils import default_responses
 from .api import Controller
 from .serializers import (RentSerializer)
 

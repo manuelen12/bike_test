@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rental.rents.v0.urls import router as rent
-from common.utils import DefaultRouter
+from rental.common.utils import DefaultRouter
 
 router = DefaultRouter()
 router.extend(rent)

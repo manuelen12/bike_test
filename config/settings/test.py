@@ -20,12 +20,12 @@ TEMPLATES[0]['OPTIONS']['debug'] = False
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='CHANGEME!!!')
 
 # DATABASES
-DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:"
-    }
-}
+# DATABASES = {
+#     'default': {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": ":memory:"
+#     }
+# }
 
 
 # Mail settings

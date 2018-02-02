@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 # Third-party app imports
 # Imports from your apps
-from common.utils import Base
+from rental.common.utils import Base
 from rental.rents.models import Rentals, Bike, PriceByFrecuency
 
 User = get_user_model()
