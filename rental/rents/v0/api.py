@@ -34,53 +34,55 @@ class Controller (Base):
             return
 
         x = {i.id: i.price  for i in PriceByFrecuency.objects.filter(id__in=[e["price_by_frecuency_id"] for e in kwargs["bike"]])}
-        print(x)
+
         if not x:
             self._error_info("price", "it i not exit")
             return
 
         __total = 0
+        __quantity = 0
         for i in kwargs['bike']:
             __valid = ["price_by_frecuency_id", "quantity"]
             if not self._list_basic_info(i, __valid):
                 return
+            __quantity += int(i["quantity"])
             __total += x[i["price_by_frecuency_id"]]
         kwargs["neto_price"] = __total
-
-        if 3<=len(kwargs['bike'])<=5:
-            kwargs["total_price"] = 30 * __total/ 100
+        kwargs["total_price"] = __total
+        kwargs["familiar_rental_promotion"] = False
+        # import ipdb; ipdb.set_trace()
+        if 3 <= __quantity <= 5:
+            kwargs["total_price"] -= 30 * __total / 100
             kwargs["familiar_rental_promotion"] = True
-        else:
-            kwargs["total_price"] = __total
-            kwargs["familiar_rental_promotion"] = False
         return True
 
     def create_rent(self):
         if not self.valid_rent(self.data):
             return
+        # import ipdb; ipdb.set_trace()
         self.export_attr(Rentals, self.data)
         __r = Rentals.objects.create(**self.values)
+        # x = __r
         for i in self.data['bike']:
-            self.export_attr(Bike, i)
             i["rentals_id"] = __r.id
-            Bike.objects.create(**i)
+            self.export_attr(Bike, i)
+            Bike.objects.create(**self.values)
         self.list_rent(__r.id)
 
     def list_rent(self, pk=None):
+
         __filters = loads(self.request.GET.get('filters', "{}"))
         __paginator = loads(self.request.GET.get('paginator', "{}"))
         __ordening = loads(self.request.GET.get('ordening', "[]"))
         if pk:
             __filters.update({"pk": pk})
-        __filters.update({"user_id": self.request.user.id})
         __search = self.request.GET.get('search')
-        __filters.update({"status": True})
         # __filters.update({"user_id": self.request.user.id})
         self.list_rents(__filters, __paginator, __ordening, __search)
 
     def list_rents(self, filters={}, paginator={}, ordening=(), search=None):
         __array = []
-        __rents = Rentals.objects.prefetch_related("rentals_bike").filter(
+        __rents = Rentals.objects.select_related("user").prefetch_related("rentals_bike").filter(
             **filters).order_by(*ordening)
         for i in __rents:
             __dict = {
