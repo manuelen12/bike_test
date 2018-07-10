@@ -15,16 +15,13 @@ class PriceByFrecuency(models.Model):
         app_label = 'rents'
         db_table = 'price_by_frecuency'
 
-    def __str__(self):
-        return self.get_frequently_display()
-
 
 # Create your models here.
 class Rentals(models.Model):
 
     neto_price = models.IntegerField(null=True)
-    discount_price = models.IntegerField(null=True)
-    total_price = models.IntegerField(null=True)
+    familiar_rental_promotion = models.BooleanField(default=False)
+    total_price = models.FloatField(null=True)
     status = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
@@ -32,14 +29,10 @@ class Rentals(models.Model):
         app_label = 'rents'
         db_table = 'rentals'
 
-    def __str__(self):
-        return str(self.create_at)
-
 
 class Bike(models.Model):
 
     rentals = models.ForeignKey(Rentals, related_name="rentals_bike")
-    familiar_rental_promotion = models.BooleanField(default=False)
     price_by_frecuency = models.ForeignKey(
         PriceByFrecuency, related_name="price_bike")
     quantity = models.IntegerField()
@@ -48,6 +41,3 @@ class Bike(models.Model):
     class Meta:
         app_label = 'rents'
         db_table = 'bike'
-
-    def __str__(self):
-        return str(self.create_at)

@@ -21,39 +21,16 @@ class RentViewSets(viewsets.ViewSet):
 
         if serializer.error:
             return default_responses(404, serializer.error)
-        print(serializer.result)
         return default_responses(200, serializer.result)
 
     def list(self, request, *args, **kwargs):
         serializer = Controller(request)
         serializer.list_rent()
-        if serializer.error:
-            print(serializer.error)
-            return default_responses(400, serializer.error)
 
         return default_responses(200, serializer.result)
 
     def retrieve(self, request, pk, *args, **kwargs):
         serializer = Controller(request)
         serializer.list_rent(pk)
-        if serializer.error:
-            print(serializer.error)
-            return default_responses(400, serializer.error)
 
         return default_responses(200, serializer.result)
-    # def update(self, request, pk, *args, **kwargs):
-    #     serializer = Controller(request)
-    #     serializer.update_plan(pk)
-    #     if serializer.error:
-    #         print(serializer.error)
-    #         return default_responses(404, serializer.error)
-
-    #     return default_responses(200, serializer.result)
-
-    # def destroy(self, request, pk, *args, **kwargs):
-    #     serializer = Controller(request)
-    #     serializer.delete_plan(pk)
-    #     if serializer.error:
-    #         return default_responses(404, serializer.error)
-
-    #     return default_responses(200, serializer.result)

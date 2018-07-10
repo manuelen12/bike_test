@@ -11,8 +11,8 @@ class TestRentals:
 
     def test_rent_model(self):
         rent = mixer.blend(Rentals)
-        assert rent.pk == 2, 'should create a Rents instance'
+        assert rent.pk == 1, 'should create a Rents instance'
 
     def test_price_by_frecuency_model(self):
         price_by_frecuency = mixer.blend(PriceByFrecuency)
-        assert price_by_frecuency.pk == 2, 'PriceByFrecuency instance'
+        assert price_by_frecuency.pk == 1, 'PriceByFrecuency instance'

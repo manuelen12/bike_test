@@ -48,3 +48,5 @@ redis>=2.10.5
 
 
 # Your custom requirements go here
+djangorestframework==3.8.2
+django-rest-swagger==2.2.0
