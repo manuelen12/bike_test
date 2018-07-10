@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 
 
 class PriceByFrecuency(models.Model):
@@ -22,12 +21,10 @@ class PriceByFrecuency(models.Model):
 
 # Create your models here.
 class Rentals(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE,
-                             related_name='rent_user', null=True)
+
     neto_price = models.IntegerField(null=True)
+    discount_price = models.IntegerField(null=True)
     total_price = models.IntegerField(null=True)
-    familiar_rental_promotion = models.BooleanField(default=False)
     status = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
@@ -36,12 +33,13 @@ class Rentals(models.Model):
         db_table = 'rentals'
 
     def __str__(self):
-        return self.user.username
+        return str(self.create_at)
 
 
 class Bike(models.Model):
 
     rentals = models.ForeignKey(Rentals, related_name="rentals_bike")
+    familiar_rental_promotion = models.BooleanField(default=False)
     price_by_frecuency = models.ForeignKey(
         PriceByFrecuency, related_name="price_bike")
     quantity = models.IntegerField()

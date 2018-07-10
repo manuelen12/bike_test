@@ -1,7 +1,6 @@
 # Stdlib imports
 from json import loads
 # Core Django imports
-from django.conf import settings
 from django.contrib.auth import get_user_model
 # Third-party app imports
 # Imports from your apps
@@ -17,12 +16,11 @@ class Controller (Base):
         self.request = request
         self.error = {}
         self.result = []
-        self.url_api = settings.HTTP+self.request.META['HTTP_HOST']+"/api/v0/"
         self.data = self.valid_data()
 
     def valid_rent(self, kwargs):
         __valid = [
-            'user_id', 'bike'
+            'bike'
         ]
         if not self._list_basic_info(kwargs, __valid):
             return
@@ -32,11 +30,18 @@ class Controller (Base):
         except:
             self._error_info("bike", "must be a json")
             return
-
-        x = {i.id: i.price  for i in PriceByFrecuency.objects.filter(id__in=[e["price_by_frecuency_id"] for e in kwargs["bike"]])}
+        # import ipdb; ipdb.set_trace()
+        __valid = ["price_by_frecuency_id", "quantity"]
+        __price_by = []
+        for i in kwargs['bike']:
+            if not self._list_basic_info(i, __valid):
+                return
+            __price_by.append(i["price_by_frecuency_id"])
+        x = {i.id: i.price for i in PriceByFrecuency.objects.filter(
+            id__in=__price_by)}
 
         if not x:
-            self._error_info("price", "it i not exit")
+            self._error_info("price_by_frecuency_id", "it is not exit")
             return
 
         __total = 0
@@ -77,18 +82,15 @@ class Controller (Base):
         if pk:
             __filters.update({"pk": pk})
         __search = self.request.GET.get('search')
-        # __filters.update({"user_id": self.request.user.id})
+
         self.list_rents(__filters, __paginator, __ordening, __search)
 
     def list_rents(self, filters={}, paginator={}, ordening=(), search=None):
         __array = []
-        __rents = Rentals.objects.select_related("user").prefetch_related("rentals_bike").filter(
+        __rents = Rentals.objects.prefetch_related("rentals_bike").filter(
             **filters).order_by(*ordening)
         for i in __rents:
             __dict = {
-                "user": {
-                    "username": i.user.username
-                },
                 "neto_price": i.neto_price,
                 "total_price": i.total_price,
                 "familiar_rental_promotion": i.familiar_rental_promotion,

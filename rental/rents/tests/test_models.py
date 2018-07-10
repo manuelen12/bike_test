@@ -9,16 +9,10 @@ class TestRentals:
         bike = mixer.blend(Bike)
         assert bike.pk == 1, 'should create a Bike instance'
 
-        assert str(bike)
-
     def test_rent_model(self):
         rent = mixer.blend(Rentals)
-        assert rent.pk == 1, 'should create a Rents instance'
-
-        assert str(rent) == rent.user.username
+        assert rent.pk == 2, 'should create a Rents instance'
 
     def test_price_by_frecuency_model(self):
         price_by_frecuency = mixer.blend(PriceByFrecuency)
-        assert price_by_frecuency.pk == 1, 'PriceByFrecuency instance'
-
-        assert str(price_by_frecuency) == price_by_frecuency.get_frequently_display()
+        assert price_by_frecuency.pk == 2, 'PriceByFrecuency instance'
