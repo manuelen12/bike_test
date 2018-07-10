@@ -30,28 +30,35 @@ class Controller (Base):
         except:
             self._error_info("bike", "must be a json")
             return
-        # import ipdb; ipdb.set_trace()
+
         __valid = ["price_by_frecuency_id", "quantity"]
         __price_by = []
+        __group_bike = {}
         for i in kwargs['bike']:
-            if not self._list_basic_info(i, __valid):
+            if not self._list_int_info(i, __valid):
                 return
-            __price_by.append(i["price_by_frecuency_id"])
-        x = {i.id: i.price for i in PriceByFrecuency.objects.filter(
+            if int(i["price_by_frecuency_id"]) in __group_bike:
+                __group_bike[i["price_by_frecuency_id"]] += int(i["quantity"])
+            else:
+                __group_bike[int(i["price_by_frecuency_id"])] = int(i["quantity"])
+            __price_by.append(int(i["price_by_frecuency_id"]))
+        __price = {i.id: i.price for i in PriceByFrecuency.objects.filter(
             id__in=__price_by)}
 
-        if not x:
+        if not __price:
             self._error_info("price_by_frecuency_id", "it is not exit")
             return
 
+        x = sorted(__group_bike.items(), key=lambda kv: __price[kv[0]])
+        import ipdb; ipdb.set_trace()
         __total = 0
         __quantity = 0
+        bike = []
         for i in kwargs['bike']:
-            __valid = ["price_by_frecuency_id", "quantity"]
-            if not self._list_basic_info(i, __valid):
-                return
-            __quantity += int(i["quantity"])
-            __total += x[i["price_by_frecuency_id"]]
+            bike.append(i)
+            if 3 <= int(i["quantity"]) <= 5:
+                __quantity += int(i["quantity"])
+                __total += x[i["price_by_frecuency_id"]]
         kwargs["neto_price"] = __total
         kwargs["total_price"] = __total
         kwargs["familiar_rental_promotion"] = False
@@ -93,7 +100,6 @@ class Controller (Base):
             __dict = {
                 "neto_price": i.neto_price,
                 "total_price": i.total_price,
-                "familiar_rental_promotion": i.familiar_rental_promotion,
                 "status": i.status,
                 "create_at": str(i.create_at),
                 "bike": []
