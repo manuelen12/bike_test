@@ -3,12 +3,6 @@ Project Name
 
 project to rent cars
 
-.. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
-     :target: https://github.com/pydanny/cookiecutter-django/
-     :alt: Built with Cookiecutter Django
-
-
-:License: MIT
 Requirement
 --------
 	- postgresql
@@ -28,11 +22,11 @@ How to Install
 
 How to Use
 --------
-	to run the project use:
+	to run the project like api use:
 		./manage.py runserver
-	and go to the site and conect to localhost
+	then you can intro in the documentation since the url http://localhost:8000
 	to run the unitary test use:
-		./manage.py pytest
+		./manage.py test
 
 
 Settings
@@ -42,19 +36,11 @@ Moved to settings_.
 
 .. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
-Basic Commands
---------------
 
-Setting Up Your Users
-^^^^^^^^^^^^^^^^^^^^^
-
-* To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
-
-* To create an **superuser account**, use this command::
-
-    $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+Main Application
+----------------
+the Main class is in the folder 
+    rental/rents/v0/api.py with the class Controller this extend from my Base Class (rental/common/utils.py) , utils.py are the tools that i would use in all the project  
 
 Test coverage
 ^^^^^^^^^^^^^
@@ -70,42 +56,8 @@ Running tests with py.test
 
 ::
 
-  $ py.test
-
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
-
-
-
-
-Sentry
-^^^^^^
-
-Sentry is an error logging aggregator service. You can sign up for a free account at  https://sentry.io/signup/?code=cookiecutter  or download and host it yourself.
-The system is setup with reasonable defaults, including 404 logging and integration with the WSGI application.
-
-You must set the DSN url in production.
-
-
-Deployment
-----------
-
-The following details how to deploy this application.
-
-
-Heroku
-^^^^^^
-
-See detailed `cookiecutter-django Heroku documentation`_.
-
-.. _`cookiecutter-django Heroku documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html
-
-
+  $ pytest
+  the unit test are in rentals/rents/tests
 
 Docker
 ^^^^^^

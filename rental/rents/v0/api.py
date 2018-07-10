@@ -1,13 +1,10 @@
 # Stdlib imports
 from json import loads
 # Core Django imports
-from django.contrib.auth import get_user_model
 # Third-party app imports
 # Imports from your apps
 from rental.common.utils import Base
 from rental.rents.models import Rentals, Bike, PriceByFrecuency
-
-User = get_user_model()
 
 
 class Controller (Base):
